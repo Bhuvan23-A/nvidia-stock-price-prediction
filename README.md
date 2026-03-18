@@ -2,10 +2,12 @@
 
 This project builds an end-to-end machine learning pipeline to predict **NVIDIA (NVDA) stock closing prices** using historical stock market data. It includes data cleaning, feature engineering, model training with a Random Forest Regressor, and evaluation using regression metrics and visualizations.
 
+## 🚀 Live Demo
+👉 [Click here to view the deployed Streamlit app](https://nvidia-stock-price-prediction-b2zghcwkhtluvzyetqdtqy.streamlit.app/)
+
 ---
 
 ## 📊 Dataset
-
 - Source file: `NVIDIA_STOCK.csv`
 - Columns used:
   - `Date`
@@ -19,7 +21,6 @@ This project builds an end-to-end machine learning pipeline to predict **NVIDIA 
 - Total records after preprocessing: **1697 rows**
 
 Preprocessing steps:
-
 - Skipped extra CSV headers using `skiprows`
 - Parsed `Date` as a datetime column and set it as the DataFrame index
 - Converted all price/volume columns to numeric
@@ -28,9 +29,7 @@ Preprocessing steps:
 ---
 
 ## 🧩 Feature Engineering
-
 The following features are created from the raw stock data:
-
 - **MA10** – 10-day Moving Average of `Close`
 - **MA50** – 50-day Moving Average of `Close`
 - **Daily_Return** – Percentage change of the closing price (`Close.pct_change()`)
@@ -39,7 +38,6 @@ The following features are created from the raw stock data:
 After feature creation, rows with NaN values are dropped.
 
 **Features used for training:**
-
 - `Open`
 - `High`
 - `Low`
@@ -50,44 +48,39 @@ After feature creation, rows with NaN values are dropped.
 - `Volatility`
 
 **Target variable:**
-
 - `Close` (NVIDIA closing price)
 
 ---
 
 ## 🧠 Model
-
 The project uses a **RandomForestRegressor** from Scikit-learn.
-
 - Algorithm: `RandomForestRegressor`
 - Number of trees (estimators): `n_estimators = 100`
 - `random_state = 42`
-- Train–test split: `80%` training, `20%` testing  
+- Train–test split: `80%` training, `20%` testing
   - Training samples: **1318**
   - Testing samples: **330**
 
 ---
 
 ## 📈 Results
-
 The model performance on the test set:
 
-- **Mean Absolute Error (MAE):** `0.26`
-- **Root Mean Squared Error (RMSE):** `0.50`
-- **R² Score:** `0.9997`
+| Metric | Score |
+|--------|-------|
+| Mean Absolute Error (MAE) | `0.26` |
+| Root Mean Squared Error (RMSE) | `0.50` |
+| R² Score | `0.9997` |
 
 A higher R² (close to 1) indicates that the model explains almost all the variance in the target (closing price).
 
 ---
 
 ## 📉 Visualizations
-
 The notebook generates:
-
-1. **Actual vs Predicted Line Plot**  
+1. **Actual vs Predicted Line Plot**
    - Compares true closing prices with model predictions over time.
-
-2. **Actual vs Predicted Scatter Plot**  
+2. **Actual vs Predicted Scatter Plot**
    - Shows how closely predicted values align with actual prices.
 
 These plots help visually inspect the quality of predictions.
@@ -95,22 +88,24 @@ These plots help visually inspect the quality of predictions.
 ---
 
 ## 🛠️ Technologies Used
-
 - Python
 - NumPy
 - Pandas
 - Matplotlib
 - Seaborn
 - Scikit-learn
+- Streamlit
 - Jupyter Notebook / Google Colab
 
 ---
 
 ## 📂 Project Structure
-
 ```text
 nvidia-stock-price-predictor/
 │
 ├── Nvidiastockpricepredictor.ipynb   # Main notebook
+├── app.py                            # Streamlit web app
 ├── NVIDIA_STOCK.csv                  # Raw historical stock data
+├── requirements.txt                  # Python dependencies
 └── README.md                         # Project documentation
+```
